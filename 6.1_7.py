@@ -5,7 +5,7 @@ root.geometry('100x100')
 
 def every_tick():
     try:
-        result.configure(text='Результат: ' + str((3 * float(a.get()) - 2 * float(b.get()) * float(c.get())))
+        result.configure(text='Результат: ' + str((3 * float(a.get()) - 2 * float(b.get()) * float(c.get()))))
         root.after(1, every_tick)
     except:
         root.after(1, every_tick)
@@ -30,7 +30,7 @@ result = Label(text='Результат: 0')
 every_tick()
 a.pack()
 b.pack()
-c.pack
+c.pack()
 result.pack()
 
 
