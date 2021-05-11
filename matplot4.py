@@ -77,6 +77,7 @@ class Gui(Tk):
             ctx.move_to(165, 30)
             ctx.line_to(90, 200)
             ctx.line_to(240, 200)
+            ctx.line_to(165, 30)
 
         if self.is_color_checked.get():
             ctx.set_source_rgb(0, 0.8, 0.5)
@@ -87,6 +88,7 @@ class Gui(Tk):
             ctx.set_line_width(4)
         else:
             ctx.set_line_width(1)
+        ctx.fill_extents()
 
         if not self.is_fill_style_checked.get():
             ctx.fill_preserve()
@@ -95,6 +97,17 @@ class Gui(Tk):
         else:
             ctx.clip()
             ctx.mask_surface(self.ims, -200, -200)
+            if self.list_of_shapes.current() == 0:
+                ctx.rectangle(100, 100, 100, 100)
+            elif self.list_of_shapes.current() == 1:
+                ctx.arc(175, 175, 45, 0, 2 * math.pi)
+            else:
+                ctx.move_to(165, 30)
+                ctx.line_to(90, 200)
+                ctx.line_to(240, 200)
+                ctx.line_to(165, 30)
+            ctx.set_source_rgb(0, 0, 0)
+            ctx.stroke()
 
         self._image_ref = ImageTk.PhotoImage(
             Image.frombuffer("RGBA", (350, 350), self.surface.get_data(), "raw", "RGBA", 0, 1))
